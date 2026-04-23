@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProWash Services | Signup</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .customer-table-section { margin-top: 3rem; }
+        .msg-box {
+            padding: 0.85rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: none;
+        }
+        .msg-success { background:#d7f4e9; color:#065a50; display:block; }
+        .msg-error   { background:#fde2e1; color:#9b1d1d; display:block; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">ProWash <span>Services</span></div>
+            <nav class="nav" aria-label="Primary">
+                <a href="index.html">Home</a>
+                <a href="orders.html">Orders</a>
+                <a href="signup.html">Signup</a>
+                <a href="products.html">Products</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="form-section">
+        <div class="container">
+            <div class="panel">
+                <h1 class="section-title">Create Your ProWash Account</h1>
+                <form class="form-grid" id="signup-form" onsubmit="return false;">
+                    <div class="form-field">
+                        <label for="name">Full Name</label>
+                        <input id="name" type="text" placeholder="Jordan Smith" required minlength="3" maxlength="60">
+                    </div>
+                    <div class="form-field">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" placeholder="jordan@example.com" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="phone">Phone</label>
+                        <input id="phone" type="tel" placeholder="301-555-0101">
+                    </div>
+                    <div class="form-field form-full button-row">
+                        <button class="button-primary" type="button" id="btn-signup">Create Account</button>
+                    </div>
+                </form>
+                <div id="signup-msg" class="msg-box"></div>
+            </div>
+
+            <!-- Customer List -->
+            <div class="panel customer-table-section">
+                <h2 class="section-title" style="font-size:1.4rem">Registered Customers</h2>
+                <button class="button-primary" id="btn-load-customers" style="margin-bottom:1.2rem">Load Customers</button>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Joined</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customer-tbody">
+                            <tr><td colspan="6" style="text-align:center;color:var(--muted)">Click "Load Customers" to fetch data.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">Need help? Email bookings@prowash.local</div>
+    </footer>
+
+    <script src="signup_app.js"></script>
+</body>
+</html>

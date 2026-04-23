@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProWash Services | Orders</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .orders-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        @media (max-width: 900px) { .orders-grid { grid-template-columns: 1fr; } }
+
+        .form-panel {
+            background: var(--card);
+            border-radius: 22px;
+            padding: 2.4rem;
+            box-shadow: var(--shadow);
+        }
+        .form-panel h2 {
+            font-family: "Fraunces", serif;
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+        }
+        .order-form { display: grid; gap: 1rem; }
+        .order-form .form-field { display: grid; gap: 0.4rem; }
+
+        .msg-box {
+            padding: 0.85rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: none;
+        }
+        .msg-success { background:#d7f4e9; color:#065a50; display:block; }
+        .msg-error   { background:#fde2e1; color:#9b1d1d; display:block; }
+
+        .btn-status {
+            border: none; padding: 0.35rem 0.8rem; border-radius: 999px;
+            font-size: 0.8rem; font-weight: 700; cursor: pointer; margin-right: 0.3rem;
+            background: var(--highlight); color: #9b5c00; transition: opacity 0.2s;
+        }
+        .btn-status:hover { opacity: 0.75; }
+        .btn-del-order {
+            border: none; padding: 0.35rem 0.8rem; border-radius: 999px;
+            font-size: 0.8rem; font-weight: 700; cursor: pointer;
+            background: #fde2e1; color: #9b1d1d; transition: opacity 0.2s;
+        }
+        .btn-del-order:hover { opacity: 0.75; }
+
+        .status-pending   { background:#fff1d9; color:#9b5c00; }
+        .status-confirmed { background:#d7f4e9; color:#065a50; }
+        .status-shipped   { background:#dce8ff; color:#1a4fbf; }
+        .status-delivered { background:#e9d7f4; color:#5a0690; }
+        .status-cancelled { background:#fde2e1; color:#9b1d1d; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">ProWash <span>Services</span></div>
+            <nav class="nav" aria-label="Primary">
+                <a href="index.html">Home</a>
+                <a href="orders.html">Orders</a>
+                <a href="signup.html">Signup</a>
+                <a href="products.html">Products</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="form-section">
+        <div class="container">
+            <h1 class="section-title" style="margin-bottom:1.5rem">Order Management</h1>
+            <div class="orders-grid">
+                <!-- Place Order Form -->
+                <div class="form-panel">
+                    <h2>Place New Order</h2>
+                    <form class="order-form" id="order-form" onsubmit="return false;">
+                        <div class="form-field">
+                            <label for="order-customer">Customer ID</label>
+                            <input id="order-customer" type="number" min="1" placeholder="e.g. 1" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="order-product">Product ID</label>
+                            <input id="order-product" type="number" min="1" placeholder="e.g. 2" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="order-qty">Quantity</label>
+                            <input id="order-qty" type="number" min="1" value="1" required>
+                        </div>
+                        <button class="button-primary" type="button" id="btn-order-submit">Place Order</button>
+                    </form>
+                    <div id="order-msg" class="msg-box"></div>
+                </div>
+
+                <!-- Orders Table -->
+                <div>
+                    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+                        <h2 class="section-title" style="margin-bottom:0">Order History</h2>
+                        <button class="button-primary" id="btn-load-orders">Refresh</button>
+                    </div>
+                    <div class="panel" style="padding:0">
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Customer</th>
+                                        <th>Product</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orders-tbody">
+                                    <tr><td colspan="7" style="text-align:center;color:var(--muted)">Click "Refresh" to load orders.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">Your next wash is only a click away.</div>
+    </footer>
+
+    <script src="orders_app.js"></script>
+</body>
+</html>
